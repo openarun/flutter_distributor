@@ -40,6 +40,8 @@ class AppPackageMakerDeb extends AppPackageMaker {
 
     Directory packagingDirectory = makeConfig.packagingDirectory;
 
+    print('dir : ${packagingDirectory.path}');
+
     /// Need to create following directories
     /// /DEBIAN
     /// /usr/share/$appBinaryName
@@ -113,6 +115,13 @@ class AppPackageMakerDeb extends AppPackageMaker {
       '-fr',
       '${appDirectory.path}/.',
       '${packagingDirectory.path}/usr/share/${makeConfig.appBinaryName}/',
+    ]);
+
+    // copy files from usr to deb package usr/
+     await $('cp', [
+      '-fr',
+      '${appDirectory.path}/../usr',
+      '${packagingDirectory.path}/',
     ]);
 
     ProcessResult processResult = await $('dpkg-deb', [

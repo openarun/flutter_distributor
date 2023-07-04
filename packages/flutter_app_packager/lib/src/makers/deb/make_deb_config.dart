@@ -113,10 +113,10 @@ categories:
   - Music
   - Media
 
-# let OS know if the application can be run on start_up. If it's false 
-# the application will deny to the OS if it was added as a start_up 
+# let OS know if the application can be run on start_up. If it's false
+# the application will deny to the OS if it was added as a start_up
 # application
-startup_notify: true  
+startup_notify: true
 */
 
 class MakeDebConfig extends MakeLinuxPackageConfig {
@@ -142,6 +142,7 @@ class MakeDebConfig extends MakeLinuxPackageConfig {
     this.enhances,
     this.genericName,
     this.icon,
+    this.execCommand,
     this.keywords,
     this.preDependencies,
     this.provides,
@@ -218,7 +219,8 @@ class MakeDebConfig extends MakeLinuxPackageConfig {
         genericName: map['generic_name'],
         startupNotify: map['startup_notify'],
         installedSize: map['installed_size'],
-        icon: map['icon']);
+        icon: map['icon'],
+        execCommand: map['exec_command']);
   }
 
   String displayName;
@@ -231,6 +233,7 @@ class MakeDebConfig extends MakeLinuxPackageConfig {
   String? icon;
   String? genericName;
   bool? startupNotify;
+  String? execCommand;
   List<String>? coAuthors;
   List<String>? dependencies;
   List<String>? buildDependenciesIndep;
@@ -295,7 +298,7 @@ class MakeDebConfig extends MakeLinuxPackageConfig {
         'Name': displayName,
         'GenericName': genericName,
         'Icon': appBinaryName,
-        'Exec': '$appBinaryName %U',
+        'Exec': execCommand,
         'Actions': actions != null && actions!.isNotEmpty
             ? '${actions!.join(';')};'
             : null,
