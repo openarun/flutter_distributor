@@ -1,5 +1,5 @@
 name: flutter_distributor
-repository: https://github.com/leanflutter/flutter_distributor
+repository: https://github.com/openarun/flutter_distributor
 
 packages:
   - apps/**
