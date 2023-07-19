@@ -13,6 +13,7 @@ class MakeRPMConfig extends MakeConfig {
     this.icon,
     this.keywords,
     this.supportedMimeType,
+    this.execCommand,
 
     // Spec file
     this.summary,
@@ -66,6 +67,7 @@ class MakeRPMConfig extends MakeConfig {
       defattr: json['defattr'] as String?,
       attr: json['attr'] as String?,
       changelog: json['changelog'] as String?,
+      execCommand: json['exec_command'] as String?,
     );
   }
 
@@ -77,6 +79,7 @@ class MakeRPMConfig extends MakeConfig {
   List<String>? supportedMimeType;
   List<String>? actions;
   List<String>? categories;
+  String? execCommand;
 
   //RPM preamble Spec file fields
   String? summary;
@@ -152,7 +155,7 @@ class MakeRPMConfig extends MakeConfig {
         'Name': displayName,
         'GenericName': genericName,
         'Icon': appName,
-        'Exec': '$appName %U',
+        'Exec': execCommand,
         'Actions': actions != null && actions!.isNotEmpty
             ? '${actions!.join(';')};'
             : null,
